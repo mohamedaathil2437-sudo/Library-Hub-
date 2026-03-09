@@ -1,359 +1,370 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LibraryHub | Free Academic Management</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>LibraryHub | Elite Academic Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- CSS VARIABLES & THEMING --- */
+        /* --- WORLD-CLASS UI VARIABLES --- */
         :root {
-            --bg-body: #f4f7fe; --bg-sidebar: #ffffff; --bg-card: #ffffff;
-            --text-main: #1e293b; --text-muted: #64748b; --accent: #2563eb;
-            --accent-hover: #1d4ed8; --border: #e2e8f0; --danger: #ef4444;
-            --success: #10b981; --warning: #f59e0b;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #7c3aed;
+            --bg-base: #f1f5f9;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        [data-theme="dark"] {
-            --bg-body: #0b1437; --bg-sidebar: #111c44; --bg-card: #1b254b;
-            --text-main: #ffffff; --text-muted: #a3aed1; --border: #2b3674;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-main); transition: 0.3s; overflow-x: hidden; }
 
-        /* --- LAYOUT --- */
-        .app-container { display: flex; min-height: 100vh; }
-        .sidebar { width: 260px; background: var(--bg-sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 1.5rem; position: fixed; height: 100vh; z-index: 100; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent); margin-bottom: 2.5rem; display: flex; align-items: center; gap: 8px;}
-        .logo span { color: var(--text-main); }
-        .nav-section { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin: 1.5rem 0 0.5rem 0; letter-spacing: 0.05em; }
-        .nav-links { list-style: none; flex-grow: 1; }
-        .nav-item { padding: 0.8rem 1rem; margin-bottom: 0.3rem; border-radius: 8px; cursor: pointer; color: var(--text-muted); font-weight: 500; transition: all 0.2s; display: flex; align-items: center; gap: 12px; }
-        .nav-item:hover { background: rgba(37, 99, 235, 0.05); color: var(--accent); }
-        .nav-item.active { background: var(--accent); color: white; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
-        .hidden { display: none !important; }
-
-        /* --- MAIN CONTENT --- */
-        .main-content { margin-left: 260px; flex-grow: 1; padding: 2rem 3rem; width: calc(100% - 260px); }
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
-        .header-title { font-size: 1.75rem; font-weight: 700; }
-        .header-controls { display: flex; align-items: center; gap: 1rem; }
-        .role-selector { padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main); font-weight: 500; cursor: pointer; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg-base); color: var(--text-dark); overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
         
-        /* --- COMPONENTS --- */
-        .btn { padding: 0.6rem 1.2rem; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; transition: 0.2s; font-size: 0.875rem; }
-        .btn-primary { background: var(--accent); color: white; }
-        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
-        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
-        .badge { padding: 0.25rem 0.6rem; border-radius: 99px; font-size: 0.75rem; font-weight: 600; }
-        .badge-success { background: rgba(16, 185, 129, 0.1); color: var(--success); }
-        .badge-warning { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
-        .badge-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
-        .search-container { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
-        .search-input { flex-grow: 1; padding: 0.8rem 1.2rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main); font-size: 0.95rem; box-shadow: var(--shadow); }
+        /* --- ANIMATED BACKGROUND --- */
+        .bg-shapes { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; background: #e2e8f0; }
+        .shape { position: absolute; filter: blur(80px); opacity: 0.6; animation: float 10s infinite alternate ease-in-out; }
+        .shape-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #c7d2fe; animation-delay: 0s; }
+        .shape-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #ddd6fe; animation-delay: -5s; }
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(5%, 5%) scale(1.1); } }
 
-        /* GRIDS & CARDS */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
-        .stat-card { background: var(--bg-card); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 0.5rem; }
-        .stat-card h3 { font-size: 0.875rem; color: var(--text-muted); font-weight: 500; }
-        .stat-card p { font-size: 1.8rem; font-weight: 700; color: var(--text-main); }
+        /* --- UTILITIES --- */
+        .hidden { display: none !important; }
+        .glass { background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border); box-shadow: var(--shadow-sm); }
+        .gradient-text { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
-        .book-card { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; transition: transform 0.2s; }
-        .book-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        .book-cover { height: 160px; background: linear-gradient(45deg, var(--border), var(--bg-body)); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--text-muted); }
-        .book-info { padding: 1.2rem; }
-        .book-title { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .book-author { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
-        .book-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+        /* --- LOGIN SCREEN --- */
+        #login-view { height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .login-card { max-width: 440px; width: 100%; padding: 3rem 2.5rem; border-radius: var(--radius-lg); text-align: center; animation: slideUp 0.6s ease-out; }
+        .login-card h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .login-card p { color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.1rem; }
+        
+        .google-btn {
+            display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; padding: 1rem;
+            background: white; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 1.1rem; font-weight: 600;
+            color: #334155; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-sm);
+        }
+        .google-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border-color: #cbd5e1; }
+        .google-btn svg { width: 24px; height: 24px; }
+
+        /* --- APP LAYOUT --- */
+        #app-view { display: flex; min-height: 100vh; opacity: 0; animation: fadeIn 0.5s forwards; }
+        
+        /* SIDEBAR */
+        .sidebar { width: 280px; padding: 2rem; display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,0.4); }
+        .logo { font-size: 1.8rem; font-weight: 800; margin-bottom: 3rem; display: flex; align-items: center; gap: 10px; }
+        .nav-item { padding: 1rem 1.2rem; margin-bottom: 0.5rem; border-radius: 12px; cursor: pointer; color: var(--text-muted); font-weight: 600; transition: var(--transition); display: flex; align-items: center; gap: 12px; }
+        .nav-item:hover { background: rgba(255,255,255,0.5); color: var(--primary); }
+        .nav-item.active { background: white; color: var(--primary); box-shadow: var(--shadow-sm); }
+        
+        /* MAIN CONTENT */
+        .main-content { flex-grow: 1; padding: 2rem 3rem; max-width: 1400px; margin: 0 auto; width: 100%; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; }
+        .page-title { font-size: 2.2rem; font-weight: 700; color: var(--text-dark); }
+        
+        /* USER PROFILE */
+        .user-profile { display: flex; align-items: center; gap: 1rem; background: white; padding: 0.5rem 1.5rem 0.5rem 0.5rem; border-radius: 50px; box-shadow: var(--shadow-sm); cursor: pointer; transition: var(--transition); border: 1px solid var(--glass-border); }
+        .user-profile:hover { box-shadow: var(--shadow-lg); }
+        .user-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+        .user-info { display: flex; flex-direction: column; }
+        .user-name { font-weight: 700; font-size: 0.95rem; line-height: 1.2; }
+        .user-role { font-size: 0.75rem; color: var(--primary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* BENTO GRID (Dashboard) */
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .bento-card { padding: 2rem; border-radius: var(--radius-lg); transition: var(--transition); display: flex; flex-direction: column; justify-content: center; }
+        .bento-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .bento-card h3 { font-size: 1rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem; }
+        .bento-card p { font-size: 2.5rem; font-weight: 800; color: var(--text-dark); }
+        
+        /* BOOK GRID */
+        .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .book-card { padding: 1.5rem; border-radius: var(--radius-lg); transition: var(--transition); display: flex; flex-direction: column; background: white; }
+        .book-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .book-icon { width: 60px; height: 60px; border-radius: 16px; background: #eff6ff; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary); }
+        .book-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .book-author { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        
+        /* BUTTONS */
+        .btn { padding: 0.8rem 1.5rem; border-radius: 12px; border: none; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: var(--transition); }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39); }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79, 70, 229, 0.23); }
+        .btn-danger { background: #fee2e2; color: #ef4444; }
+        .btn-danger:hover { background: #fca5a5; color: white; }
 
         /* TABLES */
-        .table-card { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
-        .table-header { padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-        .table-header h3 { font-size: 1.1rem; font-weight: 600; }
-        table { width: 100%; border-collapse: collapse; text-align: left; }
-        th { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; background: rgba(0,0,0,0.01); }
-        td { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; vertical-align: middle; }
+        .table-container { border-radius: var(--radius-lg); overflow: hidden; background: white; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #f8fafc; padding: 1.2rem 1.5rem; text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid #e2e8f0; }
+        td { padding: 1.2rem 1.5rem; border-bottom: 1px solid #f1f5f9; font-weight: 500; }
+        tr:hover td { background: #f8fafc; }
+        .badge { padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.75rem; font-weight: 700; }
+        .badge-active { background: #dcfce7; color: #166534; }
 
-        /* NOTIFICATIONS */
-        #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
-        .toast { background: var(--bg-card); border-left: 4px solid var(--accent); color: var(--text-main); padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); animation: slideIn 0.3s ease forwards; }
-        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        /* LOADER */
+        #global-loader { position: fixed; inset: 0; background: var(--bg-base); display: flex; align-items: center; justify-content: center; z-index: 9999; flex-direction: column; gap: 20px; transition: opacity 0.5s; }
+        .spinner { width: 50px; height: 50px; border: 4px solid rgba(79, 70, 229, 0.2); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-<div class="app-container">
-    <aside class="sidebar">
-        <div class="logo">📘 <span>LibraryHub</span></div>
-        <ul class="nav-links">
-            <div class="nav-section">Main Menu</div>
-            <li class="nav-item active" data-target="dashboard">📊 <span>Dashboard</span></li>
-            <li class="nav-item" data-target="books">📚 <span>Library Catalog</span></li>
-            
-            <div class="nav-section">My Account</div>
-            <li class="nav-item" data-target="borrows">📖 <span>Borrow History</span></li>
-            <li class="nav-item" data-target="activity">📋 <span>My Activity</span></li>
-            
-            <div id="teacher-menu" class="hidden">
-                <div class="nav-section">Academic</div>
-                <li class="nav-item" data-target="student-logs">🔍 <span>Student Logs</span></li>
+<div class="bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+</div>
+
+<div id="global-loader">
+    <div class="spinner"></div>
+    <h3 style="color: var(--primary); font-weight: 700;">Loading LibraryHub...</h3>
+</div>
+
+<div id="login-view" class="hidden">
+    <div class="login-card glass">
+        <h1 class="gradient-text">LibraryHub</h1>
+        <p>Your portal to infinite knowledge.</p>
+        
+        <button class="google-btn" id="btn-google-login">
+            <svg viewBox="0 0 24 24">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Continue with Google
+        </button>
+    </div>
+</div>
+
+<div id="app-view" class="hidden">
+    <aside class="sidebar glass">
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+            <span class="gradient-text">LibraryHub</span>
+        </div>
+        
+        <nav style="flex-grow: 1;">
+            <p style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 1rem; text-transform: uppercase;">Menu</p>
+            <div class="nav-item active" data-target="dashboard">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                Dashboard
             </div>
-            <div id="admin-menu" class="hidden">
-                <div class="nav-section">Administration</div>
-                <li class="nav-item" data-target="admin-books">⚙️ <span>Inventory</span></li>
-                <button class="btn btn-outline" onclick="seedFirebaseData()" style="width: 100%; margin-top: 20px; font-size: 0.75rem;">+ Seed Database</button>
+            <div class="nav-item" data-target="catalog">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Library Catalog
             </div>
-        </ul>
+            <div class="nav-item" data-target="borrows">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                My Borrows
+            </div>
+        </nav>
+        
+        <button class="btn btn-danger" id="btn-logout" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Sign Out
+        </button>
     </aside>
 
     <main class="main-content">
         <header>
-            <h1 class="header-title" id="page-title">Dashboard</h1>
-            <div class="header-controls">
-                <button class="btn btn-outline" onclick="toggleTheme()">🌓</button>
-                <select class="role-selector" id="role-switcher" onchange="switchRole(this.value)">
-                    <option value="student">🎓 View as Student</option>
-                    <option value="teacher">📝 View as Teacher</option>
-                    <option value="admin">🛡️ View as Admin</option>
-                </select>
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">
-                    <span id="user-initial">S</span>
+            <h1 class="page-title" id="page-title">Dashboard</h1>
+            <div class="user-profile">
+                <img src="https://ui-avatars.com/api/?name=User&background=4f46e5&color=fff" id="nav-avatar" class="user-avatar" alt="User">
+                <div class="user-info">
+                    <span class="user-name" id="nav-name">Loading...</span>
+                    <span class="user-role" id="nav-role">Student</span>
                 </div>
             </div>
         </header>
 
-        <div id="view-dashboard" class="view-section">
-            <div class="stats-grid" id="dashboard-stats">Loading stats...</div>
-            <div class="table-card">
-                <div class="table-header"><h3>Recent Platform Activity</h3></div>
+        <section id="view-dashboard" class="view-section">
+            <div class="bento-grid">
+                <div class="bento-card glass">
+                    <h3>Total Books Cataloged</h3>
+                    <p id="stat-total-books">0</p>
+                </div>
+                <div class="bento-card glass">
+                    <h3>My Active Borrows</h3>
+                    <p id="stat-my-borrows" style="color: var(--primary);">0</p>
+                </div>
+            </div>
+            
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 700;">Recently Added Books</h2>
+            <div class="book-grid" id="recent-books-grid"></div>
+        </section>
+
+        <section id="view-catalog" class="view-section hidden">
+            <div class="book-grid" id="catalog-grid"></div>
+        </section>
+
+        <section id="view-borrows" class="view-section hidden">
+            <div class="table-container glass">
                 <table>
-                    <thead><tr><th>User</th><th>Action</th><th>Book</th><th>Time</th></tr></thead>
-                    <tbody id="dash-activity-body"><tr><td colspan="4">Loading...</td></tr></tbody>
+                    <thead><tr><th>Book Title</th><th>Date Borrowed</th><th>Status</th></tr></thead>
+                    <tbody id="borrows-table-body"></tbody>
                 </table>
             </div>
-        </div>
-
-        <div id="view-books" class="view-section hidden">
-            <div class="search-container">
-                <input type="text" class="search-input" id="book-search" placeholder="Search by title..." oninput="renderBooks()">
-            </div>
-            <div class="book-grid" id="book-grid-container">Loading catalog...</div>
-        </div>
-
-        <div id="view-borrows" class="view-section hidden">
-            <div class="table-card">
-                <div class="table-header"><h3>My Borrow History</h3></div>
-                <table>
-                    <thead><tr><th>Book Title</th><th>Date</th><th>Status</th></tr></thead>
-                    <tbody id="borrows-body"><tr><td colspan="3">Loading...</td></tr></tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="view-activity" class="view-section hidden">
-            <div class="table-card">
-                <div class="table-header"><h3>My Personal Logs</h3></div>
-                <table>
-                    <thead><tr><th>Action</th><th>Details</th><th>Time</th></tr></thead>
-                    <tbody id="my-logs-body"><tr><td colspan="3">Loading...</td></tr></tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="view-student-logs" class="view-section hidden">
-            <div class="table-card">
-                <div class="table-header"><h3>Global Student Logs</h3></div>
-                <table>
-                    <thead><tr><th>Student</th><th>Action</th><th>Book</th><th>Date</th></tr></thead>
-                    <tbody id="all-student-logs"><tr><td colspan="4">Loading...</td></tr></tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="view-admin-books" class="view-section hidden">
-             <div class="table-card">
-                <div class="table-header"><h3>Inventory Management</h3></div>
-                <table>
-                    <thead><tr><th>Title</th><th>Category</th><th>Stock</th></tr></thead>
-                    <tbody id="admin-inventory-body"><tr><td colspan="3">Loading...</td></tr></tbody>
-                </table>
-            </div>
-        </div>
+        </section>
     </main>
 </div>
 
-<div id="toast-container"></div>
-
 <script type="module">
+    // --- 1. FIREBASE SETUP ---
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-    import { getFirestore, collection, getDocs, addDoc, doc, updateDoc, onSnapshot, query, where, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+    import { getFirestore, collection, doc, getDoc, setDoc, getDocs, addDoc, updateDoc, onSnapshot, query, where, orderBy } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
-    // YOUR ACTUAL CONFIGURATION
     const firebaseConfig = {
         apiKey: "AIzaSyAQYfWb81B89vmT0_ypZF3VNEhTtDV0hoA",
         authDomain: "libraryhub-3e6be.firebaseapp.com",
         projectId: "libraryhub-3e6be",
         storageBucket: "libraryhub-3e6be.firebasestorage.app",
         messagingSenderId: "843399614230",
-        appId: "1:843399614230:web:b8fca579c633f350908a37",
-        measurementId: "G-PZKX7RX0SE"
+        appId: "1:843399614230:web:b8fca579c633f350908a37"
     };
 
     const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
     const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
 
-    // --- STATE ---
-    window.DB = {
-        currentUser: { name: "Sam Student", id: "S101", role: "student" },
-        books: [],
-        borrows: [],
-        logs: []
-    };
+    // --- 2. GLOBAL STATE ---
+    let currentUser = null;
+    let booksData = [];
+    let borrowsData = [];
 
-    // --- REAL-TIME LISTENERS ---
-    function initDatabaseListeners() {
+    // --- 3. UI ELEMENTS ---
+    const loader = document.getElementById('global-loader');
+    const loginView = document.getElementById('login-view');
+    const appView = document.getElementById('app-view');
+
+    // --- 4. AUTHENTICATION LOGIC ---
+    // Handle Google Login Button Click
+    document.getElementById('btn-google-login').addEventListener('click', async () => {
+        try {
+            await signInWithPopup(auth, provider);
+        } catch (error) {
+            alert("Login Failed: " + error.message);
+        }
+    });
+
+    // Handle Logout Button Click
+    document.getElementById('btn-logout').addEventListener('click', () => {
+        signOut(auth);
+    });
+
+    // Listen to Auth State Changes
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            // User is signed in
+            loginView.classList.add('hidden');
+            loader.style.opacity = '1';
+            loader.classList.remove('hidden');
+
+            // Check if user exists in Firestore, if not, create them
+            const userRef = doc(db, "users", user.uid);
+            const userSnap = await getDoc(userRef);
+            
+            let role = "student"; // Default role
+            if (!userSnap.exists()) {
+                await setDoc(userRef, {
+                    name: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL,
+                    role: "student",
+                    createdAt: Date.now()
+                });
+            } else {
+                role = userSnap.data().role;
+            }
+
+            // Set global user object
+            currentUser = { uid: user.uid, name: user.displayName, email: user.email, photo: user.photoURL, role: role };
+
+            // Update UI with user info
+            document.getElementById('nav-name').innerText = currentUser.name.split(' ')[0];
+            document.getElementById('nav-avatar').src = currentUser.photo || `https://ui-avatars.com/api/?name=${currentUser.name}&background=4f46e5&color=fff`;
+            document.getElementById('nav-role').innerText = currentUser.role;
+
+            // Initialize Data Listeners
+            initDataListeners();
+            
+            // Show App
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                appView.classList.remove('hidden');
+            }, 800);
+
+        } else {
+            // User is signed out
+            currentUser = null;
+            appView.classList.add('hidden');
+            loader.classList.add('hidden');
+            loginView.classList.remove('hidden');
+        }
+    });
+
+    // --- 5. DATA FETCHING & RENDERING ---
+    function initDataListeners() {
         // Listen to Books
         onSnapshot(collection(db, "books"), (snapshot) => {
-            window.DB.books = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            renderBooks();
+            booksData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            
+            // Seed sample data if empty
+            if(booksData.length === 0) seedBooks(); 
+
+            renderCatalog();
             renderDashboard();
-            renderAdminBooks();
         });
 
-        // Listen to Borrows
-        onSnapshot(collection(db, "borrows"), (snapshot) => {
-            window.DB.borrows = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        // Listen to Current User's Borrows
+        const q = query(collection(db, "borrows"), where("userId", "==", currentUser.uid));
+        onSnapshot(q, (snapshot) => {
+            borrowsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             renderBorrows();
             renderDashboard();
         });
-
-        // Listen to Logs
-        onSnapshot(query(collection(db, "logs"), orderBy("timestamp", "desc"), limit(20)), (snapshot) => {
-            window.DB.logs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            renderDashboard();
-            renderMyLogs();
-            renderStudentLogs();
-        });
     }
 
-    // --- RENDER FUNCTIONS ---
-    window.renderDashboard = function() {
-        const statsArea = document.getElementById('dashboard-stats');
-        if (window.DB.currentUser.role === 'admin') {
-            statsArea.innerHTML = `
-                <div class="stat-card"><h3>Total Books Cataloged</h3><p>${window.DB.books.length}</p></div>
-                <div class="stat-card"><h3>Active Borrows System-wide</h3><p>${window.DB.borrows.filter(b => b.status === 'Active').length}</p></div>
-            `;
-        } else {
-            const myActive = window.DB.borrows.filter(b => b.userId === window.DB.currentUser.id && b.status === 'Active').length;
-            statsArea.innerHTML = `
-                <div class="stat-card"><h3>Currently Borrowed</h3><p>${myActive}</p></div>
-                <div class="stat-card"><h3>Account Status</h3><p style="color:var(--success); font-size:1.2rem; margin-top:10px;">Good Standing</p></div>
-            `;
-        }
+    function renderDashboard() {
+        document.getElementById('stat-total-books').innerText = booksData.length;
+        document.getElementById('stat-my-borrows').innerText = borrowsData.filter(b => b.status === 'Active').length;
 
-        document.getElementById('dash-activity-body').innerHTML = window.DB.logs.slice(0, 4).map(log => `
+        // Render top 3 books on dashboard
+        const recentHtml = booksData.slice(0, 3).map(book => generateBookCard(book)).join('');
+        document.getElementById('recent-books-grid').innerHTML = recentHtml || "<p>No books available.</p>";
+    }
+
+    function renderCatalog() {
+        const html = booksData.map(book => generateBookCard(book)).join('');
+        document.getElementById('catalog-grid').innerHTML = html || "<p>No books available.</p>";
+    }
+
+    function renderBorrows() {
+        const html = borrowsData.map(b => `
             <tr>
-                <td><strong>${log.user}</strong></td>
-                <td><span class="badge ${log.action === 'Returned' ? 'badge-success' : 'badge-warning'}">${log.action}</span></td>
-                <td>${log.details}</td>
-                <td style="color:var(--text-muted)">${new Date(log.timestamp).toLocaleDateString()}</td>
+                <td><strong>${b.bookTitle}</strong></td>
+                <td>${new Date(b.timestamp).toLocaleDateString()}</td>
+                <td><span class="badge badge-active">${b.status}</span></td>
             </tr>
         `).join('');
+        document.getElementById('borrows-table-body').innerHTML = html || "<tr><td colspan='3'>You haven't borrowed any books yet.</td></tr>";
     }
 
-    window.renderBooks = function() {
-        const queryVal = (document.getElementById('book-search') ? document.getElementById('book-search').value.toLowerCase() : '');
-        const filtered = window.DB.books.filter(b => b.title.toLowerCase().includes(queryVal));
-        
-        document.getElementById('book-grid-container').innerHTML = filtered.map(book => `
-            <div class="book-card">
-                <div class="book-cover">📚</div>
-                <div class="book-info">
-                    <div class="badge ${book.stock > 0 ? 'badge-success' : 'badge-danger'}" style="margin-bottom:0.5rem; display:inline-block">
-                        ${book.stock > 0 ? `Available (${book.stock})` : 'Unavailable'}
-                    </div>
-                    <div class="book-title" title="${book.title}">${book.title}</div>
-                    <div class="book-author">${book.author} • ${book.category}</div>
-                    <div class="book-footer">
-                        <button class="btn btn-primary" style="width:100%" onclick="processBorrow('${book.id}', ${book.stock}, '${book.title}')" ${book.stock === 0 ? 'disabled' : ''}>
-                            ${book.stock > 0 ? 'Borrow Book' : 'Out of Stock'}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `).join('') || "No books found.";
-    }
-
-    window.renderBorrows = function() {
-        const myBorrows = window.DB.borrows.filter(t => t.userId === window.DB.currentUser.id);
-        document.getElementById('borrows-body').innerHTML = myBorrows.map(t => `
-            <tr>
-                <td><strong>${t.book}</strong></td>
-                <td>${new Date(t.timestamp).toLocaleDateString()}</td>
-                <td><span class="badge ${t.status === 'Returned' ? 'badge-success' : 'badge-warning'}">${t.status}</span></td>
-            </tr>
-        `).join('') || "<tr><td colspan='3'>No borrowing history.</td></tr>";
-    }
-
-    window.renderMyLogs = function() {
-        const myLogs = window.DB.logs.filter(l => l.userId === window.DB.currentUser.id);
-        document.getElementById('my-logs-body').innerHTML = myLogs.map(l => `
-            <tr><td><span class="badge badge-success">${l.action}</span></td><td>${l.details}</td><td>${new Date(l.timestamp).toLocaleDateString()}</td></tr>
-        `).join('') || "<tr><td colspan='3'>No activity yet.</td></tr>";
-    }
-
-    window.renderStudentLogs = function() {
-        document.getElementById('all-student-logs').innerHTML = window.DB.logs.map(l => `
-            <tr>
-                <td><strong>${l.user}</strong> <br><span style="font-size:0.75rem; color:var(--text-muted)">${l.userId}</span></td>
-                <td><span class="badge badge-warning">${l.action}</span></td>
-                <td>${l.details}</td>
-                <td>${new Date(l.timestamp).toLocaleDateString()}</td>
-            </tr>
-        `).join('');
-    }
-
-    window.renderAdminBooks = function() {
-        document.getElementById('admin-inventory-body').innerHTML = window.DB.books.map(b => `
-            <tr>
-                <td><strong>${b.title}</strong><br><span style="font-size:0.75rem; color:var(--text-muted)">${b.author}</span></td>
-                <td>${b.category}</td>
-                <td>${b.stock} Copies</td>
-            </tr>
-        `).join('');
-    }
-
-    // --- ACTIONS (WRITING TO FIREBASE) ---
-    window.processBorrow = async function(bookId, currentStock, bookTitle) {
-        if(currentStock > 0) {
-            try {
-                // 1. Update Stock in Firebase
-                const bookRef = doc(db, "books", bookId);
-                await updateDoc(bookRef, { stock: currentStock - 1 });
-
-                // 2. Add Borrow Record
-                await addDoc(collection(db, "borrows"), {
-                    userId: window.DB.currentUser.id,
-                    book: bookTitle,
-                    status: "Active",
-                    timestamp: Date.now()
-                });
-
-                // 3. Add Activity Log
-                await addDoc(collection(db, "logs"), {
-                    userId: window.DB.currentUser.id,
-                    user: window.DB.currentUser.name,
-                    action: "Borrowed",
-                    details: bookTitle,
-                    timestamp: Date.now()
-                });
-
-                window.showToast(`Successfully borrowed ${bookTitle}!`);
-            } catch (e) {
-                console.error("Error borrowing book: ", e);
-                window.showToast("Database error. Could not borrow book.");
-            }
-     
+    function generateBookCard(book) {
+        return `
+            <div class="book-card glass">
+                <div class="book-icon">📚</div>
+                <h3 class="book-title">${book.title}</h3>
+                <p class="book-author">${book.author} • ${book.category}</p>
+                <div style="margin-top: auto;">
+                    <p style="font-size: 0.85rem; font-weight: 600; marg
